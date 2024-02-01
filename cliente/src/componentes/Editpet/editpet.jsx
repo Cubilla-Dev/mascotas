@@ -1,26 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import './Css/edit.css'
 
-
 const Editpet = () => {
+    const { id } = useParams();
     const [nombre, setNombre] = useState("");
     const [tipo, setTipo] = useState("");
     const [descripcion, setDescripcion] = useState("");
+    const [data, setData] = useState(null)
+
+    useEffect(() => {
+        const fetchData = async () => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:3000/api/detallsmascota/${id}`);
+            setData(response.data);
+        } catch (error) {
+            console.error('Error al obtener datos de las mascotas:', error);
+        }
+        };
+
+        fetchData();
+    }, [id]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://127.0.0.1:3000/api/crear', {
+            const response = await axios.post(`http://127.0.0.1:3000/api/editmascota/${id}`, {
                 nombre: nombre,
                 tipo_de_animal: tipo,
                 descripcion_de_amimal: descripcion,
             });
 
-            console.log('mascota agregada con éxito ', response.data);
+            console.log('mascota actualizada con éxito ', response.data);
         } catch (error) {
-            console.error('Error al agregar mascota:', error);
+            console.error('Error al actualizar mascota:', error);
         }
     };
 
@@ -34,15 +49,15 @@ const Editpet = () => {
                     <br />
                     <label className='cofrepequeños1'>Pet Name: </label>
                     <br /> 
-                    <input className='cofrecito1'  value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                    <input className='cofrecito1'  value={data ? data.nombre : ''} onChange={(e) => setNombre(e.target.value)} />
                     <br />
                     <label className='cofrepequeñao2'>Pet Type</label>
                     <br />
-                    <input className='cofrecito2' value={tipo} onChange={(e) => setTipo(e.target.value)} />
+                    <input className='cofrecito2' value={data?.tipo_de_animal ?? ""} onChange={(e) => setTipo(e.target.value)} />
                     <br />
                     <label className='cofrepequeños3'>Pet Description</label>
                     <br />
-                    <input className='cofrecito3' value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+                    <input className='cofrecito3' value={data?.descripcion_de_amimal ?? ""} onChange={(e) => setDescripcion(e.target.value)} />
                     <br />
                     <button className='botoncofre' type="submit">Edit Pet</button>
                 </form>
