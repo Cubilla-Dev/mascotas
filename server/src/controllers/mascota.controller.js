@@ -20,7 +20,7 @@ const controlMascota = {
             res.status(409).send({mensaje: "Error al obtener las mascotas."})
         }
     },
-    editMascota: async (req, res) => {
+    editMascota: async (req, res) => {detallsMascota
         const id = req.params.id;
         const { nombre, tipo_de_animal, descripcion_de_amimal } = req.body;
     
@@ -40,6 +40,20 @@ const controlMascota = {
             }
         } catch (error) {
             res.status(500).send({ mensaje: "Error al actualizar la mascota." });
+        }
+    },
+    detailsMascota: async (req, res) => {
+        const id = req.params.id;    
+        console.log(id)
+        try {
+            const detailsMascota = await Mascota.findById({_id: id});    
+            if (!detailsMascota) {
+                return res.status(404).json({ mensaje: "Mascota no encontrada." });
+            }
+            res.status(200).json(detailsMascota);
+        } catch (error) {
+            console.error("Error al pedir los detalles de la mascota:", error);
+            res.status(500).send({ mensaje: "Error al pedir los detalles de la mascota." });
         }
     },
     

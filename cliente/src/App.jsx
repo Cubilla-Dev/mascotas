@@ -1,16 +1,23 @@
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+
 import Addpet from "./componentes/Addpet/addpet";
-//import Pethome from "./componentes/PetHome/petshome"
-//import Editpet from "./componentes/Editpet/editpet";
-//import Pethome from "./componentes/PetHome/petshome";
+import Editpet from "./componentes/Editpet/editpet";
+import Detailspet from "./componentes/detailspet/detailspet";
+
 
 
 function App() {
-
   return (
-    <> 
-    <Addpet/>
-    </>
-  )
+    <Routes>
+        <Route path="/" element={<Addpet/>} />
+        {/* <Route path="/mostrar" element={} /> */}
+        <Route path="/editar/:id" element={<Editpet/>} /> 
+        <Route path="/detalles/:id" element={<Detailspet/>} /> 
+    </Routes>
+  );
 }
 
 export default App;

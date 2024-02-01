@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import './Css/agg.css'
+import './Css/edit.css'
 
 
 const Editpet = () => {
