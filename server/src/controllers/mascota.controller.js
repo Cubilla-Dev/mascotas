@@ -20,7 +20,7 @@ const controlMascota = {
             res.status(409).send({mensaje: "Error al obtener las mascotas."})
         }
     },
-    editMascota: async (req, res) => {detallsMascota
+    editMascota: async (req, res) => {
         const id = req.params.id;
         const { nombre, tipo_de_animal, descripcion_de_amimal } = req.body;
     
