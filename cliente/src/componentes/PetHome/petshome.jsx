@@ -23,7 +23,10 @@ const Pethome = () => {
         <div className="contenedor">
         <h1 className='contenedor1'>Pet Shelter</h1>
         <br />
-        <h2 className='contenedor2'>These pets are looking for a good home </h2>
+        <div>
+            <h2 className='contenedor2'>These pets are looking for a good home </h2>
+            <Link to={'/'}>add a pet to the shelter</Link>
+        </div>
     
         <br />
     
@@ -32,7 +35,7 @@ const Pethome = () => {
                 <tr className='cont3colun1'>
                     <th>Name</th>
                     <th>Type</th>
-                    <th>Description</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>

@@ -56,6 +56,20 @@ const controlMascota = {
             res.status(500).send({ mensaje: "Error al pedir los detalles de la mascota." });
         }
     },
+    deleteMascota: async (req, res) => {
+        const id = req.params.id;
+        console.log(id);
+        try {
+            const detailsMascota = await Mascota.findByIdAndDelete(id);
+            if (!detailsMascota) {
+                return res.status(404).json({ mensaje: "Mascota no encontrada." });
+            }
+            res.status(200).json({ message: 'Se adoptó al animal' });
+        } catch (error) {
+            console.error("Error al eliminar la mascota:", error);
+            res.status(500).send({ mensaje: "Error al eliminar la mascota." });
+        }
+    },
     
 }
 module.exports = controlMascota 

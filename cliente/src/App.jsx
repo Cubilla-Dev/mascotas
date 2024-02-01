@@ -17,6 +17,7 @@ function App() {
         <Route path="/mostrar" element={<Pethome/>} />
         <Route path="/editar/:id" element={<Editpet/>} /> 
         <Route path="/detalles/:id" element={<Detailspet/>} /> 
+        <Route path="/borrar/:id" /> 
     </Routes>
   );
 }

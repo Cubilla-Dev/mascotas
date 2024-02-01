@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import axios from 'axios';
 import './Css/agg.css'
+import { useNavigate } from 'react-router-dom';
 
 
 const Addpet = () => {
+    const navigate = useNavigate();
+
     const [nombre, setNombre] = useState("");
     const [tipo, setTipo] = useState("");
     const [descripcion, setDescripcion] = useState("");
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
+        navigate('/mostrar')
         try {
             const response = await axios.post('http://127.0.0.1:3000/api/crear', {
                 nombre: nombre,

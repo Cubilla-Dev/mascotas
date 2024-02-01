@@ -8,5 +8,7 @@ router.post("/api/crear", controlMascota.addMascota)
 router.get("/api/allmascota", controlMascota.allMascota)
 router.post("/api/editmascota/:id", controlMascota.editMascota)
 router.get("/api/detallsmascota/:id", controlMascota.detailsMascota)
+router.get("/api/borrar/:id", controlMascota.deleteMascota)
+
 
 module.exports = router
