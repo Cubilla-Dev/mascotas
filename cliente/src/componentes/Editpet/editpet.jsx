@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import './Css/edit.css';
 
 
@@ -45,7 +45,7 @@ const Editpet = () => {
         <div className='cofre1'>
             <h1 className='cofretitulo1'>Pet Shelter</h1>
             <h2 className='cofretitulo2'>Edit</h2>
-
+            <Link to={'/mostrar'}>back home</Link>
             <div className='cofre2'>
                 <form onSubmit={onSubmit}>
                     <br />

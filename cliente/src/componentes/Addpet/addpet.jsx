@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import './Css/agg.css'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const Addpet = () => {
-    const navigate = useNavigate();
 
     const [nombre, setNombre] = useState("");
     const [tipo, setTipo] = useState("");
@@ -13,7 +12,7 @@ const Addpet = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        navigate('/mostrar')
+        
         try {
             const response = await axios.post('http://127.0.0.1:3000/api/crear', {
                 nombre: nombre,
@@ -30,7 +29,10 @@ const Addpet = () => {
     return (
         <div className='caja1'>
             <h1 className='cajatitulo1'>Pet Shelter</h1>
-            <h2 className='cajatitulo2'>Know a pet needing a home?</h2>
+            <div>
+                <h2 className='cajatitulo2'>Know a pet needing a home?</h2>
+                <Link to={'/mostrar'}>back home</Link>
+            </div>
 
             <div className='caja2'>
                 <form onSubmit={onSubmit} >
