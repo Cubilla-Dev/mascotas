@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './Css/edit.css';
 
+
 const Editpet = () => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [nombre, setNombre] = useState("");
     const [tipo, setTipo] = useState("");
@@ -25,7 +27,7 @@ const Editpet = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
+        navigate('/mostrar')
         try {
             const response = await axios.put(`http://127.0.0.1:3000/api/editmascota/${id}`, {
                 nombre: nombre,
